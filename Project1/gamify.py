@@ -1,19 +1,8 @@
-# Luyu Wu Vankerkwijk - ESC180 Project #1 - September 27th 2025
-
 def initialize():
-    '''Initializes the global variables needed for the simulation.
-    Note: this function is incomplete, and you may want to modify it'''
-    
-    global cur_hedons, cur_health
-
-    global cur_time
-    global last_activity, last_activity_duration
-    
-    global last_finished
-    global bored_with_stars
-    global star_times
-    global cur_star
-    
+    global cur_hedons, cur_health, bored_with_stars
+    global cur_time, last_finished, star_times
+    global last_activity, last_activity_duration, cur_star
+        
     cur_hedons = 0
     cur_health = 0
     
@@ -31,15 +20,11 @@ def initialize():
     
 
 def star_can_be_taken(activity):
-    # Do not need to define other conditions, as they are taken care of
-    # E.g. perform activity automatically removes current stars once finished
-    # E.g. setting stars checks if user is tired of stars before setting
     return (activity == cur_star)
 
 def perform_activity(activity, duration):
     global last_activity, last_activity_duration, cur_time, last_finished
-    global cur_health, cur_hedons
-    global cur_star
+    global cur_health, cur_hedons, cur_star
     
     tired = (cur_time-last_finished) < 120
 

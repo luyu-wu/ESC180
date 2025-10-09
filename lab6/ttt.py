@@ -31,6 +31,7 @@ def make_random_move(board,mark):
     return board
     
 def better_move(board,mark):
+    # Check how to win
     free = get_free_squares(board)
     for i in free:
         board[i[0]][i[1]] = mark
@@ -38,6 +39,18 @@ def better_move(board,mark):
             return board
         board[i[0]][i[1]] = " "
 
+    # Check how to stop player winning
+    opp = "O"
+    if mark == "O":
+        opp = "X"
+    for i in free:
+        board[i[0]][i[1]] = opp
+        if is_win(board,opp):
+            board[i[0]][i[1]] = mark
+            return board
+        board[i[0]][i[1]] = " "
+
+    # Return random move
     rand = free[int(len(free) * random.random())]
     board[rand[0]][rand[1]] = mark
 
@@ -75,6 +88,7 @@ if __name__ == '__main__':
     turn = "X"
     while True:
         turn = "X"
+        print("\nYOUR TURN")
         move = int(input("\nEnter your move: "))-1
         board[move//3][move%3] = "X"
         print_board_and_legend(board)
@@ -84,7 +98,7 @@ if __name__ == '__main__':
         
         print("\nAI TURN\n")
         turn = "O"
-        board = make_random_move(board,turn)
+        board = better_move(board,turn)
         print_board_and_legend(board)    
 
         if is_win(board,turn):

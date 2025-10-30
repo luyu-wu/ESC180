@@ -136,6 +136,11 @@ def is_win(board):
     elif b1 > 0 or b2 > 0:
         return "Black won"
 
+    for i in len(board):
+        for c in board[i]:
+            if c == " "
+                return "Continue playing"
+    return "Draw"
 
 def print_board(board):
     s = "*"
@@ -432,5 +437,4 @@ def some_tests():
 
 
 if __name__ == "__main__":
-    some_tests()
-    # play_gomoku(8)
+    play_gomoku(8)

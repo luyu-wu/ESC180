@@ -65,6 +65,7 @@ def is_sequence_complete(board,col,y_start,x_start,length,d_y,d_x):
     for i in range(length):
         if board[y_start+d_y*i][x_start+d_x*i] != col:
             return False
+    
     if board[y_start-d_y][x_start-d_x] == col or board[y_start+d_y*length][x_start+d_x*length]==col:
         return False
     return True

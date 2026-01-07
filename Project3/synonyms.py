@@ -41,8 +41,6 @@ def build_semantic_descriptors(sentences):
                     d[w1][w2] = 1
                 else:
                     d[w1][w2] += 1
-    
-    print("Finish building Descriptors")
     return d
 
 
@@ -53,16 +51,14 @@ def build_semantic_descriptors_from_files(filenames):
         string = file.read().lower()
         file.close()
 
-        string = string.replace("\n"," ")
-        string = string.replace("?",".").replace("!",".")
-        string = string.replace(",","").replace("-","").replace("--"," ")
-        string = string.replace(":","").replace(";","")
+        string = string.replace("?",". ").replace("!",". ")
+        string = string.replace(","," ").replace("-"," ").replace("--"," ")
+        string = string.replace(":"," ").replace(";"," ")
         for sentence in string.split('.'):
             arr = []
             for word in sentence.split():
                 arr.append(word)
             sentences.append(arr)
-    print("Finished building sentences...")
     return build_semantic_descriptors(sentences)
 
 
@@ -85,7 +81,7 @@ def run_similarity_test(filename, semantic_descriptors, similarity_fn):
         words = i.split()
         if len(words) != 4:
             continue
-        res = most_similar_word(words[0],words[1:],semantic_descriptors,cosine_similarity)
+        res = most_similar_word(words[0],words[2:],semantic_descriptors,cosine_similarity)
         if res == words[1]:
             correct += 1
             
